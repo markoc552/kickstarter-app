@@ -1,0 +1,14 @@
+.navigation-wrapper {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.7);
+  font-size: 20px;
+}
+
+.navigation-item {
+  margin: auto auto;
+}
+
+.navigation-item:hover {
+    cursor: pointer;
+  }

@@ -1,0 +1,30 @@
+.campaign-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh auto;
+  width: 40vw;
+  height: 40vh;
+}
+
+.campaign-list-item {
+  display: flex;
+  flex-direction: row;
+  margin: 2vh 0;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.02);
+}
+
+.campaign-list-item:hover {
+  transition: 0.5s all;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.campaign-list-item-description {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 2vw;
+}
+
+.list-headline {
+  font-size: 20px;
+}

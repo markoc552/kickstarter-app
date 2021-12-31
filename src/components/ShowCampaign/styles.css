@@ -1,0 +1,71 @@
+.campaign-show-item {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.02);
+}
+
+.campaign-show-item-description {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 2vw;
+}
+
+.show-headline {
+  font-size: 20px;
+  margin: 5vh auto;
+  height: 5vh;
+}
+
+.request-headline {
+  font-size: 20px;
+  margin: 5vh 5vh;
+  height: 5vh;
+}
+.show-campaign-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1612742491963-dd51f32dc81b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2634&q=80");
+  background-size: cover;
+}
+
+.request-container {
+  display: flex;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1612742491963-dd51f32dc81b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2634&q=80");
+  background-size: cover;
+}
+
+.show-campaign-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 70vh;
+  border: 2px solid rgb(211, 211, 211);
+  margin: auto auto;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: inset 0px 0px 15px -10px #000000;
+}
+
+.request-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+  width: 100vw;
+  border: 2px solid rgb(211, 211, 211);
+  margin: auto auto;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: inset 0px 0px 15px -10px #000000;
+}
+
+.campaign-data-headline {
+  margin: 1vh 0;
+  font-size: 17px;
+}
+
+.campaign-data-description {
+  font-size: 14px;
+  color: rgb(148, 148, 148);
+}

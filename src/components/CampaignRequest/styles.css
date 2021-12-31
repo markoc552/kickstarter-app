@@ -1,0 +1,25 @@
+.request-form {
+  margin: auto auto;
+  width: 30vw;
+}
+
+.request-campaign-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1482455480256-f49706deb391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+  background-size: cover;
+}
+
+
+.request-campaign-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 70vh;
+    border: 2px solid rgb(211, 211, 211);
+    margin: auto auto;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: inset 0px 0px 15px -10px #000000;
+  }

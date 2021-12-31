@@ -1,0 +1,17 @@
+.discover-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.discover-wrapper-item {
+  margin: 1vh 5vw;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.discover-wrapper-item-description {
+  display: flex;
+  flex-direction: column;
+  margin: auto 2vw;
+}

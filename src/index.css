@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: "Bree Serif", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.campaigns-list-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+  width: 100vw;
+}
