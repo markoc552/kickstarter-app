@@ -1,23 +1,28 @@
 import React from "react";
 import { Table, Button } from "semantic-ui-react";
 
-const RequestRow = ({ id, request, approversCount }) => {
+import { getCampaignContract } from "../../ethereum/contract";
+import web3 from "../../ethereum/web3";
+
+const RequestRow = ({ id, request, approversCount, address }) => {
   const { Row, Cell } = Table;
 
-  const onApprove = () => {
-    // const campaign = Campaign(props.address);
-    // // const accounts = await web3.eth.getAccounts();
-    // // await campaign.methods
-    // //   .approveRequest(props.id)
-    // //   .send({ from: accounts[0], gas: "1000000" });
+  const onApprove = async () => {
+    const campaign = getCampaignContract(address);
+
+    const accounts = await web3.eth.getAccounts();
+
+    await campaign.methods
+      .approveRequest(id)
+      .send({ from: accounts[0], gas: "1000000" });
   };
 
-  const onFinalize = () => {
-    // const campaign = Campaign(props.address);
-    // const accounts = await web3.eth.getAccounts();
-    // // await campaign.methods
-    // //   .finalizeRequest(props.id)
-    // //   .send({ from: accounts[0] });
+  const onFinalize = async () => {
+    const campaign = getCampaignContract(address);
+
+    const accounts = await web3.eth.getAccounts();
+
+    await campaign.methods.finalizeRequest(id).send({ from: accounts[0] });
   };
 
   const isReadyToFinalize = () => {

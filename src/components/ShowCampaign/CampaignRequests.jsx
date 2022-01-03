@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "semantic-ui-react";
-import "./styles.css";
 import Table from "./Table";
+
+import { getCampaignContract } from "../../ethereum/contract";
+
+import "./styles.css";
 
 const CampaignRequests = ({ updatePageToShow, address }) => {
   const [contractAddress, setContractAddress] = useState("");
@@ -11,20 +14,22 @@ const CampaignRequests = ({ updatePageToShow, address }) => {
 
   useEffect(() => {
     const getRequestsData = async () => {
-      // const campaign = Campaign(address);
-      // const requestCount = await campaign.methods.getRequestsCount().call();
-      // const approversCount = await campaign.methods.approversCount().call();
-      // const requests = await Promise.all(
-      //   Array(parseInt(requestCount))
-      //     .fill()
-      //     .map((element, index) => {
-      //       return campaign.methods.requests(index).call();
-      //     })
-      // );
-      // setContractAddress(address);
-      // setRequests(requests);
-      // setRequestsCount(requestCount);
-      // setApproversCount(approversCount);
+      const campaign = getCampaignContract(address);
+
+      const requestCount = await campaign.methods.getRequestsCount().call();
+      const approversCount = await campaign.methods.approversCount().call();
+      const requests = await Promise.all(
+        Array(parseInt(requestCount))
+          .fill()
+          .map((element, index) => {
+            return campaign.methods.requests(index).call();
+          })
+      );
+
+      setContractAddress(address);
+      setRequests(requests);
+      setRequestsCount(requestCount);
+      setApproversCount(approversCount);
     };
     getRequestsData();
   }, []);

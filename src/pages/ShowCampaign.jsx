@@ -1,49 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import CampaignDetails from "../components/ShowCampaign/CampaignDetails";
 import CampaignRequests from "../components/ShowCampaign/CampaignRequests";
 
 import "../components/ShowCampaign/styles.css";
 
-const ShowCampaign = () => {
+const ShowCampaign = (props) => {
   const [showPage, updatePageToShow] = useState("details");
+  const [address, setAddress] = useState("0");
 
-  const items = [
-    {
-      header: 0x123,
-      meta: "Address of manager",
-      description: "Manager created this campaing and can create requests",
-      style: { overflowWrap: "break-word" },
-    },
-    {
-      header: 1000,
-      meta: "Current balance",
-      description: "Balance that is available on the contract",
-    },
-    {
-      header: 2,
-      meta: "Minimum Contribution",
-      description: "Minimum ammount of ether needed to contribute the campaign",
-    },
-    {
-      header: 2,
-      meta: "Request Count",
-      description: "Number of requests in this campaign",
-    },
-    {
-      header: 1,
-      meta: "Approvers Count",
-      description: "People who approved this campaign",
-    },
-  ];
+  useEffect(() => {
+    setAddress(props.params.match.address);
+  }, []);
 
   return (
     <div className="show-campaign-container">
       <div className="show-campaign-wrapper">
         {showPage === "details" ? (
-          <CampaignDetails updatePageToShow={updatePageToShow} />
+          <CampaignDetails
+            updatePageToShow={updatePageToShow}
+            address={address}
+          />
         ) : (
-          <CampaignRequests updatePageToShow={updatePageToShow} />
+          <CampaignRequests
+            updatePageToShow={updatePageToShow}
+            address={address}
+          />
         )}
       </div>
     </div>

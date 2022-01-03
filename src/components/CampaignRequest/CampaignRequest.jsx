@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, TextArea, Form, Input, Message } from "semantic-ui-react";
+
+import { getCampaignContract } from "../../ethereum/contract";
+import web3 from "../../ethereum/web3";
 import "./styles.css";
 
-const CampaignRequest = (props) => {
+const CampaignRequest = ({ address }) => {
   const [value, setValue] = useState("");
   const [description, setDescription] = useState("");
   const [recipient, setRecipient] = useState("");
@@ -14,17 +17,17 @@ const CampaignRequest = (props) => {
 
     setLoading(true);
 
-    // const campaign = Campaign(props.address);
+    const campaign = getCampaignContract(address);
 
-    // try {
-    //   const accounts = await web3.eth.getAccounts();
+    try {
+      const accounts = await web3.eth.getAccounts();
 
-    //   await campaign.methods
-    //     .createRequest(description, web3.utils.toWei(value, "ether"), recipient)
-    //     .send({ from: accounts[0] });
-    // } catch (err) {
-    //   setErrorMessage(err.message);
-    // }
+      await campaign.methods
+        .createRequest(description, web3.utils.toWei(value, "ether"), recipient)
+        .send({ from: accounts[0] });
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
 
     setLoading(false);
   };

@@ -1,11 +1,10 @@
 pragma solidity 0.4.17;
 
-
 contract FactoryCampaign {
     address[] public deployedCampaigns;
 
     function createCampaign(uint256 minimum) public {
-        address newCampaing = new Campaign(minimum, msg.sender); //create instance of campaign contract
+        address newCampaing = new Campaign(minimum, msg.sender);
 
         deployedCampaigns.push(newCampaing);
     }
@@ -14,7 +13,6 @@ contract FactoryCampaign {
         return deployedCampaigns;
     }
 }
-
 
 contract Campaign {
     struct Request {
@@ -47,12 +45,13 @@ contract Campaign {
 
         approvers[msg.sender] = true;
         approversCount++;
-    }   
+    }
 
-    function createRequest(string description, uint256 value, address recepient)
-        public
-        restricted
-    {
+    function createRequest(
+        string description,
+        uint256 value,
+        address recepient
+    ) public restricted {
         Request memory newRequest = Request({
             description: description,
             value: value,
@@ -85,8 +84,15 @@ contract Campaign {
     }
 
     function getSummary()
-        public view
-        returns (uint256, uint256, uint256, uint256, address)
+        public
+        view
+        returns (
+            uint256,
+            uint256,
+            uint256,
+            uint256,
+            address
+        )
     {
         return (
             minimumContribution,

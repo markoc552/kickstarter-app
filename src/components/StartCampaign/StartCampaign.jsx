@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+
 import { Form, Message, Input, Button, TextArea } from "semantic-ui-react";
 import ImageUploader from "./ImageUploader";
+
+import web3 from "../../ethereum/web3";
+import factoryCampaign from "../../ethereum/contract";
 
 const StartCampaign = () => {
   const [minimumContribution, setMinimumContribution] = useState(0);
@@ -12,7 +16,13 @@ const StartCampaign = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+
     try {
+      const accounts = await web3.eth.getAccounts();
+
+      await factoryCampaign.methods
+        .createCampaign(minimumContribution)
+        .send({ from: accounts[0], gasLimit: "0x6691b7" });
     } catch (err) {
       setErrorMessage(err.message);
     }

@@ -1,33 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Progress, Button } from "semantic-ui-react";
+
+import { getCampaignContract } from "../../ethereum/contract";
+import web3 from "../../ethereum/web3";
+
 import history from "../../history";
 import "./styles.css";
 
-const CampaignDetails = ({ updatePageToShow }) => {
+const CampaignDetails = ({ updatePageToShow, address }) => {
+  const [summary, updateSummary] = useState({});
+
+  useEffect(() => {
+    const campaign = getCampaignContract(address);
+
+    const getSummary = async (contract) => {
+      return await contract.methods.getSummary().call();
+    };
+
+    updateSummary(getSummary(campaign));
+  }, []);
+
   const items = [
     {
-      header: 0x123,
+      header: address,
       meta: "Address of manager",
       description: "Manager created this campaing and can create requests",
       style: { overflowWrap: "break-word" },
     },
     {
-      header: 1000,
+      header: web3.utils.fromWei(summary[1], "ether"),
       meta: "Current balance",
       description: "Balance that is available on the contract",
     },
     {
-      header: 2,
+      header: summary[0],
       meta: "Minimum Contribution",
       description: "Minimum ammount of ether needed to contribute the campaign",
     },
     {
-      header: 2,
+      header: summary[2],
       meta: "Request Count",
       description: "Number of requests in this campaign",
     },
     {
-      header: 1,
+      header: summary[3],
       meta: "Approvers Count",
       description: "People who approved this campaign",
     },
